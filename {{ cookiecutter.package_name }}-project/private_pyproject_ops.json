@@ -1,0 +1,23 @@
+{
+    // the python package name, use lowercase, digits, and underscore only
+    // this would be the name for ``pip install ${package_name}``
+    "package_name": "{{ cookiecutter.package_name }}",
+    // the python major version you use for local development
+    "dev_py_ver_major": {{ cookiecutter.py_ver_major }},
+    // the python minor version you use for local development
+    "dev_py_ver_minor": {{ cookiecutter.py_ver_minor }},
+    // the python micro version you use for local development
+    "dev_py_ver_micro": {{ cookiecutter.py_ver_micro }},
+    // The AWS profile you use for publishing to AWS CodeArtifact
+    "aws_profile": "{{ cookiecutter.aws_profile }}",
+    //  This has to match: https://console.aws.amazon.com/codesuite/codeartifact/domains
+    "aws_codeartifact_domain": "{{ cookiecutter.aws_codeartifact_domain }}",
+    //  This has to match https://console.aws.amazon.com/codesuite/codeartifact/repositories
+    "aws_codeartifact_repository": "{{ cookiecutter.aws_codeartifact_repository }}",
+    // if you use AWS S3 to host your document website
+    // it is the aws profile you use for doc site deployment
+    // leave empty string "" if you don't use it
+    "doc_host_aws_profile": "{{ cookiecutter.aws_profile }}",
+    // it is the aws s3 bucket you use to store you document files
+    "doc_host_s3_bucket": "{{ cookiecutter.aws_codeartifact_domain }}-app-devops-us-east-1-doc-host"
+}

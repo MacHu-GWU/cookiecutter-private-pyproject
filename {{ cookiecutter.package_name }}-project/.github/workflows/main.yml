@@ -1,0 +1,59 @@
+# comprehensive github action yml reference: https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions
+
+---
+name: CI
+
+on:
+  push: # any push event to master will trigger this
+    branches: ["main"]
+  pull_request: # any pull request to master will trigger this
+    branches: ["main"]
+  workflow_dispatch: # allows you to manually trigger run
+
+jobs:
+  tests:
+    name: "${% raw %}{{{% endraw %} matrix.os {% raw %}}}{% endraw %} Python ${% raw %}{{{% endraw %} matrix.python-version {% raw %}}}{% endraw %}"
+    runs-on: "${% raw %}{{{% endraw %} matrix.os {% raw %}}}{% endraw %}" # for all available VM runtime, see this: https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners
+    env: # define environment variables
+      USING_COVERAGE: "3.8,3.9,3.10,3.11,3.12"
+      AWS_DEFAULT_REGION: ${% raw %}{{{% endraw %} secrets.AWS_DEFAULT_REGION {% raw %}}}{% endraw %}
+      AWS_ACCESS_KEY_ID: ${% raw %}{{{% endraw %} secrets.AWS_ACCESS_KEY_ID {% raw %}}}{% endraw %}
+      AWS_SECRET_ACCESS_KEY: ${% raw %}{{{% endraw %} secrets.AWS_SECRET_ACCESS_KEY {% raw %}}}{% endraw %}
+    strategy:
+      matrix:
+        os: ["ubuntu-latest", "windows-latest"]
+#        os: ["ubuntu-latest", ] # for debug only
+#        os: ["windows-latest", ] # for debug only
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+#        python-version: ["3.8", ] # for debug only
+        exclude:
+          - os: windows-latest # this is a useless exclude rules for demonstration use only
+            python-version: 2.7
+    steps:
+      - uses: "actions/checkout@v3" # https://github.com/marketplace/actions/checkout
+      - uses: "actions/setup-python@v4" # https://github.com/marketplace/actions/setup-python
+        with:
+          python-version: "${% raw %}{{{% endraw %} matrix.python-version {% raw %}}}{% endraw %}"
+
+      - if: matrix.os == 'ubuntu-latest' # for condition steps, you should put if at begin, and use single quote for logical expression
+        name: "Install dependencies on MacOS or Linux"
+        run: |
+          set -xe
+          python -VV
+          python -m site
+          python -m pip install --upgrade pip setuptools virtualenv
+          python -m virtualenv .venv
+          .venv/bin/pip install -r requirements-automation.txt
+          .venv/bin/python bin/s02_1_install.py
+          .venv/bin/python bin/s02_3_install_test.py
+          .venv/bin/pytest tests --cov={{ cookiecutter.package_name }}
+      - if: matrix.os == 'windows-latest'
+        name: "Install dependencies on Windows"
+        run: |
+          python -m site
+          python -m pip install --upgrade pip setuptools virtualenv
+          python -m virtualenv .venv
+          .venv\Scripts\pip install -r requirements-automation.txt
+          .venv\Scripts\python bin\s02_1_install.py
+          .venv\Scripts\python bin\s02_3_install_test.py
+          .venv\Scripts\pytest tests --cov={{ cookiecutter.package_name }}

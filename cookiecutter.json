@@ -1,0 +1,15 @@
+{
+    "package_name": "your_package_name",
+    "github_username": "your_github_username",
+    "author_name": "Author Name",
+    "author_email": "author@email.com",
+    "semantic_version": "0.1.1",
+    "aws_profile": "your_aws_profile",
+    "aws_codeartifact_repository": "your_aws_codeartifact_repository",
+    "aws_codeartifact_domain": "your_aws_codeartifact_domain",
+    "aws_account_id": "862612136886",
+    "github_token_name": "your_github_token_name",
+    "py_ver_major": "3",
+    "py_ver_minor": "11",
+    "py_ver_micro": "8"
+}
