@@ -42,7 +42,7 @@ exclude = [
 python = "^3.8"
 # Poetry dependencies specification document
 # https://python-poetry.org/docs/dependency-specification/
-dynamodb_json_seder = ">={{ cookiecutter.semantic_version }},<1.0.0"
+
 
 [tool.poetry.dev-dependencies]
 # Don't put anything here, explicit is better than implicit

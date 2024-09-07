@@ -250,7 +250,7 @@ tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
 docs = ["furo (>=2023.08.17)", "sphinx (>=7.0,<8.0)", "sphinx-argparse-cli (>=1.5)", "sphinx-autodoc-typehints (>=1.10)", "sphinx-issues (>=3.0.0)"]
 test = ["build[uv,virtualenv]", "filelock (>=3)", "pytest (>=6.2.4)", "pytest-cov (>=2.12)", "pytest-mock (>=2)", "pytest-rerunfailures (>=9.1)", "pytest-xdist (>=1.34)", "setuptools (>=42.0.0)", "setuptools (>=56.0.0)", "setuptools (>=56.0.0)", "setuptools (>=67.8.0)", "wheel (>=0.36.0)"]
 typing = ["build[uv]", "importlib-metadata (>=5.1)", "mypy (>=1.9.0,<1.10.0)", "tomli", "typing-extensions (>=3.7.4.3)"]
-uv = ["uv (>={{ cookiecutter.semantic_version }}8)"]
+uv = ["uv (>=0.1.18)"]
 virtualenv = ["virtualenv (>=20.0.35)"]
 
 [[package]]
@@ -654,26 +654,6 @@ files = [
 ]
 
 [[package]]
-name = "dynamodb-json-seder"
-version = "{{ cookiecutter.semantic_version }}"
-description = "DynamoDB JSON Seder library"
-optional = false
-python-versions = ">=3.8,<4.0"
-files = [
-    {file = "dynamodb_json_seder-{{ cookiecutter.semantic_version }}-py3-none-any.whl", hash = "sha256:4c390732bb7e617c68107789444f7358751706a2965be87948cfed5a3a84d1c1"},
-    {file = "dynamodb_json_seder-{{ cookiecutter.semantic_version }}.tar.gz", hash = "sha256:0c21a99d44c73f11e10f040351740e7494e307a0a6680fbcf12fe03736e0522d"},
-]
-
-[package.dependencies]
-polars = ">=1.5.0,<2.0.0"
-simpletype = ">=0.2.4,<1.0.0"
-
-[package.source]
-type = "legacy"
-url = "https://{{ cookiecutter.aws_codeartifact_domain }}-{{ cookiecutter.aws_account_id }}.d.codeartifact.us-east-1.amazonaws.com/pypi/{{ cookiecutter.aws_codeartifact_repository }}/simple"
-reference = "{{ cookiecutter.aws_codeartifact_domain }}_python"
-
-[[package]]
 name = "executing"
 version = "2.1.0"
 description = "Get the currently executing AST node of a frame, and other information"
@@ -729,7 +709,7 @@ develop = false
 
 [package.source]
 type = "git"
-url = "https://github.com/{{ cookiecutter.github_username }}/furo-sphinx-search"
+url = "https://github.com/MacHu-GWU/furo-sphinx-search"
 reference = "main"
 resolved_reference = "01efc7be422d7dc02390aab9be68d6f5ce1a5618"
 
@@ -1443,47 +1423,6 @@ dev = ["pre-commit", "tox"]
 testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
-name = "polars"
-version = "1.6.0"
-description = "Blazingly fast DataFrame library"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "polars-1.6.0-cp38-abi3-macosx_10_12_x86_64.whl", hash = "sha256:6d1665c23e3574ebd47a26a5d7b619e6e73e53718c3b0bfd7d08b6a0a4ae7daa"},
-    {file = "polars-1.6.0-cp38-abi3-macosx_11_0_arm64.whl", hash = "sha256:d7f3abf085adf034720b358119c4c8e144bcc2d96010b7e7d0afa11b80da383c"},
-    {file = "polars-1.6.0-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a166adb429f8ee099c9d803e7470a80c76368437a8b272c67cef9eef6d5e9da1"},
-    {file = "polars-1.6.0-cp38-abi3-manylinux_2_24_aarch64.whl", hash = "sha256:1c811b772c9476f7f0bb4445a8387d2ab6d86f5e79140b1bfba914a32788d261"},
-    {file = "polars-1.6.0-cp38-abi3-win_amd64.whl", hash = "sha256:ffae15ffa80fda5cc3af44a340b565bcf7f2ab6d7854d3f967baf505710c78e2"},
-    {file = "polars-1.6.0.tar.gz", hash = "sha256:d7e8d5e577883a9755bc3be92ecbf6f20bced68267bdb8bdb440120e905cc19c"},
-]
-
-[package.extras]
-adbc = ["adbc-driver-manager[dbapi]", "adbc-driver-sqlite[dbapi]"]
-all = ["polars[async,cloudpickle,database,deltalake,excel,fsspec,graph,iceberg,numpy,pandas,plot,pyarrow,pydantic,style,timezone]"]
-async = ["gevent"]
-calamine = ["fastexcel (>=0.9)"]
-cloudpickle = ["cloudpickle"]
-connectorx = ["connectorx (>=0.3.2)"]
-database = ["nest-asyncio", "polars[adbc,connectorx,sqlalchemy]"]
-deltalake = ["deltalake (>=0.15.0)"]
-excel = ["polars[calamine,openpyxl,xlsx2csv,xlsxwriter]"]
-fsspec = ["fsspec"]
-gpu = ["cudf-polars-cu12"]
-graph = ["matplotlib"]
-iceberg = ["pyiceberg (>=0.5.0)"]
-numpy = ["numpy (>=1.16.0)"]
-openpyxl = ["openpyxl (>=3.0.0)"]
-pandas = ["pandas", "polars[pyarrow]"]
-plot = ["altair (>=5.4.0)"]
-pyarrow = ["pyarrow (>=7.0.0)"]
-pydantic = ["pydantic"]
-sqlalchemy = ["polars[pandas]", "sqlalchemy"]
-style = ["great-tables (>=0.8.0)"]
-timezone = ["backports-zoneinfo", "tzdata"]
-xlsx2csv = ["xlsx2csv (>=0.8.0)"]
-xlsxwriter = ["xlsxwriter"]
-
-[[package]]
 name = "prompt-toolkit"
 version = "3.0.47"
 description = "Library for building powerful interactive command lines in Python"
@@ -2060,21 +1999,6 @@ cryptography = ">=2.0"
 jeepney = ">=0.6"
 
 [[package]]
-name = "simpletype"
-version = "0.2.6"
-description = "Package short description."
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "simpletype-0.2.6-py3-none-any.whl", hash = "sha256:a9f35ea7487a0698f60dfa7be6c0fe4d3801af2b2154530b4dc3853d04922a80"},
-    {file = "simpletype-0.2.6.tar.gz", hash = "sha256:63dc118fb2adea2ca906f59d098133d86a4f568bdd39c35136db1d5599294c53"},
-]
-
-[package.extras]
-docs = ["Sphinx (==5.3.0)", "docfly (==2.0.3)", "furo (==2023.03.27)", "ipython (==8.10.0)", "nbsphinx (==0.8.12)", "pygments (==2.15.1)", "rich", "rstobj (==1.2.1)", "sphinx-copybutton (==0.5.1)", "sphinx-design (==0.5.0)", "sphinx-jinja (==2.0.2)"]
-tests = ["polars", "pytest", "pytest-cov"]
-
-[[package]]
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
@@ -2523,4 +2447,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "d0fb559f7ce7f0866c285963903025815d618cc9309825e743dacc1ccc298b92"
+content-hash = "692e55d98558489a267e81c20456e450b4d182bc021acbb9192e65ab3526d067"
