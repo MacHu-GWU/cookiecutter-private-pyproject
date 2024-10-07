@@ -59,5 +59,6 @@ pyops = PyProjectOps(
     aws_profile=pyops_config.aws_profile,
     aws_codeartifact_domain=pyops_config.aws_codeartifact_domain,
     aws_codeartifact_repository=pyops_config.aws_codeartifact_repository,
+    doc_host_aws_profile=pyops_config.doc_host_aws_profile,
     doc_host_s3_bucket=pyops_config.doc_host_s3_bucket,
 )
