@@ -23,7 +23,7 @@ class PyProjectDocs:
     """
     Namespace class for document related automation.
     """
-
+    doc_host_aws_profile: str = dataclasses.field()
     doc_host_s3_bucket: str = dataclasses.field()
 
     def build_doc(
@@ -92,6 +92,8 @@ class PyProjectDocs:
         ]
         if aws_profile:
             args.extend(["--profile", aws_profile])
+        else:
+            args.extend(["--profile", self.doc_host_aws_profile])
         print_command(args)
         if dry_run is False:
             subprocess.run(args, check=True)
@@ -117,6 +119,8 @@ class PyProjectDocs:
         ]
         if aws_profile:
             args.extend(["--profile", aws_profile])
+        else:
+            args.extend(["--profile", self.doc_host_aws_profile])
         print_command(args)
         if dry_run is False:
             subprocess.run(args, check=True)
