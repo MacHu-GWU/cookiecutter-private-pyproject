@@ -76,7 +76,7 @@ rstobj = "1.2.1"
 pygments = "2.15.1"
 ipython = "8.10.0"
 docfly = "2.0.3"
-furo-sphinx-search = { git = "https://github.com/{{ cookiecutter.github_username }}/furo-sphinx-search", branch = "main" }
+furo-sphinx-search = { git = "https://github.com/MacHu-GWU/furo-sphinx-search", branch = "main" }
 
 
 [tool.poetry.group.test]

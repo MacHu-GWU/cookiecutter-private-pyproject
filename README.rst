@@ -38,11 +38,11 @@ Use specific version:
 
     cookiecutter https://github.com/MacHu-GWU/cookiecutter-private-pyproject --checkout tags/${version}
 
-For example (v2 is the latest as of 2024-10-07)
+For example (v3 is the latest as of 2024-10-21)
 
 .. code-block:: bash
 
-    cookiecutter https://github.com/MacHu-GWU/cookiecutter-private-pyproject --checkout tags/v2
+    cookiecutter https://github.com/MacHu-GWU/cookiecutter-private-pyproject --checkout tags/v3
 
 Then fill in some information::
 

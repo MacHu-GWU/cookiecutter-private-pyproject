@@ -23,6 +23,8 @@ github_token_name = "{{ cookiecutter.github_token_name }}"
 aws_profile = "{{ cookiecutter.aws_profile }}"
 aws_codeartifact_domain = "{{ cookiecutter.aws_codeartifact_domain }}"  # make sure it match pyproject.toml
 aws_codeartifact_repository = "{{ cookiecutter.aws_codeartifact_repository }}"  # make sure it match pyproject.toml
+tag_name = "tech:use_case"
+tag_value = "for GitHub Action to access AWS CodeArtifact"
 
 # ------------------------------------------------------------------------------
 # Don't touch the code below
@@ -50,7 +52,10 @@ def get_github_token_file(
 def main():
     # --- create user
     try:
-        bsm.iam_client.create_user(UserName=iam_user_name)
+        bsm.iam_client.create_user(
+            UserName=iam_user_name,
+            Tags=[{"Key": tag_name, "Value": tag_value}],
+        )
     except botocore.exceptions.ClientError as e:
         if e.response["Error"]["Code"] == "EntityAlreadyExists":
             pass
