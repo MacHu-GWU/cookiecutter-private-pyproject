@@ -1,0 +1,4 @@
+{
+    "id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+    "name": "gh | {{ cookiecutter.github_username }}/{{ cookiecutter.package_name }}-project"
+}
